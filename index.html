@@ -10,12 +10,17 @@
 </form>
 <div id="printBlock"></div>
 <script>
+let kz = {
+    "January":"Қаңтар",
+    "February":"Ақпан"
+};
 var keyBox = document.search.key;
  
 // обработчик изменения текста
 function onchange(e){
 
     var printBlock = document.getElementById("printBlock");
+    // тут он должен перевести казахский на англ
     var val = new Date(e.target.value);
     printBlock.textContent = val;
 }
