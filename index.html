@@ -10,19 +10,32 @@
 </form>
 <div id="printBlock"></div>
 <script>
-let kz = {
-    "January":"Қаңтар",
-    "February":"Ақпан"
-};
+let kzMonthNames = {
+    "қаңтар": 01,
+    "ақпан": 02,
+    "наурыз": 03,
+    "сәуір": 04,
+    "мамыр": 05,
+    "маусым": 06,
+    "шілде": 07,
+    "тамыз": 08,
+    "қыркүйек": 09,
+    "қазан": 10,
+    "қараша": 11,
+    "желтоқсан": 12
+            };
 var keyBox = document.search.key;
  
 // обработчик изменения текста
 function onchange(e){
 
     var printBlock = document.getElementById("printBlock");
-    // тут он должен перевести казахский на англ
-    var val = new Date(e.target.value);
-    printBlock.textContent = val;
+        var dateParts = e.target.value.split(" ");
+            var day = parseInt(dateParts[0]);
+            var month = kzMonthNames[dateParts[1]];
+            var year = parseInt(dateParts[2]);
+            var dateObj = new Date(year, month - 1, day);
+                printBlock.textContent = dateObj.toLocaleDateString();
 }
 keyBox.addEventListener("change", onchange);
 </script>
