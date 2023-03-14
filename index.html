@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<form name="search">
+    <input type="text" id="input" value="" name="key" placeholder="Введите дату:дд мм гггг)"></input>
+    <input type="button" id="butt" onclick="replace()" name="print" value="Печать" />
+</form>
+<div id="printBlock"></div>
+<script>
+let kzMonthNames = {
+    "қаңтар": 01,
+    "ақпан": 02,
+    "наурыз": 03,
+    "сәуір": 04,
+    "мамыр": 05,
+    "маусым": 06,
+    "шілде": 07,
+    "тамыз": 08,
+    "қыркүйек": 09,
+    "қазан": 10,
+    "қараша": 11,
+    "желтоқсан": 12
+            };
+// замена элементов
+var keyBox = document.search;
+function replace(){
+    document.getElementById("input").value = document.getElementById("input").value.replace( /-/g, " " );
+}
+// обработчик изменения текста
+function onchange(e){
+{
+    var printBlock = document.getElementById("printBlock");
+        var dateParts = e.target.value.split(" ");
+            var day = parseInt(dateParts[0]);
+            if (Number.isInteger(parseInt(dateParts[1]))){
+                var month = dateParts[1];
+            } else {
+                var month = parseInt(kzMonthNames[dateParts[1]]);
+            }
+            var year = parseInt(dateParts[2]);
+            var dateObj = new Date(year, month - 1, day);
+                printBlock.textContent = dateObj.toLocaleDateString();}
+        return}
+butt.addEventListener("click", replace);
+keyBox.addEventListener("change", onchange);
+</script>
+</body>
+</html>
